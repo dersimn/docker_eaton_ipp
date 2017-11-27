@@ -1,4 +1,4 @@
-FROM i386/debian
+FROM i386/debian:latest
 
 MAINTAINER benesis002@outlook.com
 
