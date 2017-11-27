@@ -7,3 +7,6 @@ RUN wget http://pqsoftware.eaton.com/install/linux/ipp/ipp-linux_1.53.150-1_i386
 RUN dpkg -i --force-architecture ipp-linux_1.53.150-1_i386.deb
 
 EXPOSE 4679
+
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD curl -f http://localhost/ || exit 1
