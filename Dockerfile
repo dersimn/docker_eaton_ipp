@@ -6,9 +6,9 @@ RUN apt-get update && apt-get install -y wget
 RUN wget http://pqsoftware.eaton.com/install/linux/ipp/ipp-linux_1.53.150-1_i386.deb
 RUN dpkg -i --force-architecture ipp-linux_1.53.150-1_i386.deb
 ADD start.sh /root/start.sh
-RUN chmod +x /root/init.sh
+RUN chmod +x /root/start.sh
 
-CMD ["/root/init.sh"]
+CMD ["/root/start.sh"]
 
 EXPOSE 4679
 
