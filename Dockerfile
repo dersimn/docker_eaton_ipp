@@ -2,6 +2,11 @@ FROM debian:latest
 
 MAINTAINER benesis002@outlook.com
 
+ADD start.sh /root/start.sh
+RUN chmod +x /root/start.sh
+
+CMD ["/root/start.sh"]
+
 EXPOSE 4679
 
 #HEALTHCHECK --interval=5m --timeout=3s \
