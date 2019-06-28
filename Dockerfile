@@ -1,16 +1,14 @@
-FROM debian:latest
-
+FROM debian
 MAINTAINER benesis002@outlook.com
 
-RUN apt-get update && apt-get install -y wget
-RUN wget http://pqsoftware.eaton.com/install/linux/ipp/ipp-linux_1.53.150-1_amd64.deb
-#RUN dpkg -i ipp-linux_1.53.150-1_amd64.deb
-ADD start.sh /root/start.sh
-RUN chmod +x /root/start.sh
+RUN apt-get update && apt-get install -y curl
+RUN curl http://powerquality.eaton.de/Support/Software-Drivers/Downloads/IPS/ipp-linux_1.61.158-1_amd64.deb -o ipp.deb
+RUN dpkg -i ipp.deb
+RUN rm ipp.deb
 
-CMD ["/root/start.sh"]
-
+WORKDIR /usr/local/Eaton/IntelligentPowerProtector
 EXPOSE 4679
+CMD ["./mc2", "-start"]
 
-HEALTHCHECK --interval=5m --timeout=3s \
+HEALTHCHECK --interval=1m --timeout=3s \
   CMD curl -f http://localhost:4679 || exit 1
